@@ -17,8 +17,8 @@ jobs:
          
       - name: create file
         run: | 
-          echo "```mermaid
-          echo "gantt" > progress.md
+          echo "```mermaid" > progress.md
+          echo "gantt" >> progress.md
           echo "    title Progress Diagram" >> progress.md
           echo "    dateFormat  YYYY-MM-DD" >> progress.md
           echo "    section Webshop basic" >> progress.md
@@ -32,7 +32,7 @@ jobs:
       
       - name: show commits with Hash
         run: |
-          for (commit in ${{github.event.commits}}); do
+          for commit in ${{github.event.commits}}; do
             if [[ ${commit.message} == *"#"* ]]; then
               echo "${commit.message}"
             fi
