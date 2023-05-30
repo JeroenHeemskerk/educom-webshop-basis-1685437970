@@ -8,22 +8,27 @@ jobs:
     name: re-create progress file
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
        
-     - name: delete file
-       run: |
-         rm -Rf progress.md
+      - name: delete file
+        run: |
+          rm -Rf progress.md
          
-     - name: create file
-       run: | 
-         echo "gantt" > progress.md
-         echo "  title Progress Diagram" >> progress.md
-         echo "  dateFormat  YYYY-MM-DD" >> progress.md
-         echo "  section Webshop basic" >> progress.md
-         echo "  #1 Introduction: done, i1, 2023-04-29, 2023-04-30" >> progress.md
-         echo "  #2 HTML intro: done, i2, after i1,  2d" >> progress.md
-         echo "  #3 CSS intro: busy, i3, 2023-04-30, 2d" >> progress.md
+      - name: create file
+        run: | 
+          echo "gantt" > progress.md
+          echo "  title Progress Diagram" >> progress.md
+          echo "  dateFormat  YYYY-MM-DD" >> progress.md
+          echo "  section Webshop basic" >> progress.md
+          echo "  #1 Introduction: done, i1, 2023-04-29, 2023-04-30" >> progress.md
+          echo "  #2 HTML intro: done, i2, after i1,  2d" >> progress.md
+          echo "  #3 CSS intro: busy, i3, 2023-04-30, 2d" >> progress.md
          
-     - name: show file
-       run: "cat progress.md"
+      - name: show file
+        run: "cat progress.md"
+   
+      - name: Commit and push the file
+        uses: maxgfr/github-commit-push-file@main
+        with:
+          commit_name: 'updated progress.md'
